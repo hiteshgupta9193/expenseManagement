@@ -1,35 +1,38 @@
-import { Component, OnInit,OnChanges } from '@angular/core';
-import { expenses } from '../expenses';
+import { Component, OnInit } from '@angular/core';
+import { ExpensesService } from '../expenses.service';
 
 @Component({
   selector: 'app-expense-sheet',
   templateUrl: './expense-sheet.component.html',
   styleUrls: ['./expense-sheet.component.css']
 })
-export class ExpenseSheetComponent implements OnInit, OnChanges {
+export class ExpenseSheetComponent implements OnInit {
 
-  expenses = expenses;
+  expenses: Object[];
 
-checkedArr: Array<number> = [];
-checkedState = false;
+  checkedArr: Array<number> = [];
+  checkedState = false;
 
-  constructor() { }
+  constructor(private expensesService: ExpensesService) { }
 
   ngOnInit() {
+    this.expenses = this.expensesService.expenses;
   }
 
   totalAmount(): number {
     let sum = 0;
-    for (let exp of this.expenses) {
-      sum += exp.amount;
+    for (const exp of this.expenses) {
+      sum += exp['amount'];
     }
     return sum;
   }
 
-  deleteTask(){
-    for (let i = 0; i < this.checkedArr.length; i++) {
+  deleteTask() {
+    this.checkedArr = this.checkedArr.sort();
+    for (let i = this.checkedArr.length - 1; i >= 0; i--) {
       this.expenses.splice(this.checkedArr[i], 1);
     }
+    this.checkedArr = [];
   }
 
   updateCheckedOptions(i: number, e: Event) {
@@ -38,10 +41,5 @@ checkedState = false;
     } else {
       this.checkedArr.splice(this.checkedArr.indexOf(i), 1);
     }
-  }
-
-  ngOnChanges(change) {
-    // if(change.expenses)
-    // this.checkedState = false;
   }
 }

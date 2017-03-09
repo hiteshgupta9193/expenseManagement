@@ -15,5 +15,5 @@
   </tbody>
 </table>
 
-<button *ngIf="id==-1" type="button" (click)="AddTask()">Add</button> 
-<button *ngIf="id!==-1" type="button" (click)="UpdateTask()">Update</button>
+<button *ngIf="!(id>=0)" type="button" (click)="AddTask()">Add</button> 
+<button *ngIf="id>=0" type="button" (click)="UpdateTask()">Update</button>

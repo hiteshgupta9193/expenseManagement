@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { ExpenseViewerComponent } from './expense-viewer/expense-viewer.component';
 import { ExpenseSheetComponent } from './expense-sheet/expense-sheet.component';
 
+import { ExpensesService } from './expenses.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,9 @@ import { ExpenseSheetComponent } from './expense-sheet/expense-sheet.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    ExpensesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
