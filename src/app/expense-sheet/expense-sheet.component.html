@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th></th>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let expense of expenses;let i=index">
+      <td>{{i+1}}</td>
+      <td><input [id]="i" type="checkbox" (change)="updateCheckedOptions(i, $event)">
+      <td><a [routerLink]="['/expenseviewer', i]">{{expense.title}}</a></td>
+      <td>{{expense.category}}</td>
+      <td>{{expense.amount}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Total:</td>
+      <td>{{totalAmount()}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col-xs-6">
+    <button type="button" (click)="deleteTask()">Delete</button>
+  </div>
+  <div class="col-xs-6 text-right">
+    <button type="button" [routerLink]="['/expenseviewer',-1]">Add</button>
+  </div>
+</div>

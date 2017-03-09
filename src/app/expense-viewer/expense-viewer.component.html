@@ -1,0 +1,19 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Title</td>
+      <td><input [(ngModel)]="expense.title" ></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td><input [(ngModel)]="expense.category"></td>
+    </tr>
+    <tr>
+      <td>Amount</td>
+      <td><input type="number" [(ngModel)]="expense.amount"></td>
+    </tr>
+  </tbody>
+</table>
+
+<button *ngIf="id==-1" type="button" (click)="AddTask()">Add</button> 
+<button *ngIf="id!==-1" type="button" (click)="UpdateTask()">Update</button>
